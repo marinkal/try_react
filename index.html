@@ -20,14 +20,20 @@
         const App = () => {
             return <p>Всем привет, я компонент App</p>
         }
+        const News = () => {
+            return <p>К сожалению, новостей нет! Упс, завтра понедельник</p>
+        }
         class BigApp extends React.Component{
             render(){
                 return (
+                    <React.Fragment>
                     <div>
                         <h1>Я компонент, Big App</h1>
                         <p className='red'>Компоненты можно вкладывать друг в друга</p>
                         <App/>
+                        <News/>
                     </div>
+                    </React.Fragment>
                 )
             }
         }
