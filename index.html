@@ -8,6 +8,11 @@
 
     <!-- Не используйте это в production -->
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .red{
+            color: #FF0000
+        }
+    </style>
   </head>
   <body>
     <div id="root"></div>
@@ -15,8 +20,19 @@
         const App = () => {
             return <p>Всем привет, я компонент App</p>
         }
+        class BigApp extends React.Component{
+            render(){
+                return (
+                    <div>
+                        <h1>Я компонент, Big App</h1>
+                        <p className='red'>Компоненты можно вкладывать друг в друга</p>
+                        <App/>
+                    </div>
+                )
+            }
+        }
         ReactDOM.render(
-            <App/>,
+            <BigApp/>,
             document.getElementById('root')
         );
     </script>
