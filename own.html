@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React [RU] Tutorial</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- Не используйте это в production -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+      <div id="root"></div>
+      <script type="text/babel">
+        const MyBooks = [
+            {
+                id: 1,
+                author: 'Борис Васильев',
+                title: 'А завтра была война'
+            },
+            {
+                id: 2,
+                author: 'Джек Лондон',
+                title: 'Мартин Иден'
+            },
+            {
+                id: 3,
+                author: 'Харпер Ли',
+                title: 'Убить пересмешника'
+            },
+            {
+                id: 4,
+                author: 'Халлед Хоссейни',
+                title: 'Тысяча сияющих солнц'
+            },
+            {
+                id: 5,
+                author: 'Зузак Маркус',
+                title: 'Книжный вор'
+            },
+            {
+                id: '6',
+                author: 'Маргарет Митчелл',
+                title:  'Унесенные ветром'
+            }
+        ];
+        class Books extends React.Component{
+            render(){
+                const newTemplate = this.props.data.map(function(item,index){
+                    return( 
+                        <div key={item.id}>
+                            <p className="books_author">{item.author}:</p>
+                            <p className="books_title">{item.title}</p>
+                        </div>
+                    )
+                })
+                return (
+                    <div className="books">
+                        {newTemplate}
+                    </div>
+                )
+            }
+        }
+
+        const Comments = () => {
+            return <p> Про эти книги еще не написали </p>
+        }
+        const App = () =>
+        {
+                return(
+                    <React.Fragment>
+                        <Books data={MyBooks}/>
+                        <Comments/>
+                    </React.Fragment>
+                )
+        }
+        ReactDOM.render(
+            <App/>,
+            document.getElementById('root')
+        );
+    </script>
+  </body>
+  </html>
