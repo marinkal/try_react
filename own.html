@@ -44,23 +44,34 @@
                 title:  'Унесенные ветром'
             }
         ];
+        let newTemplate
         class Books extends React.Component{
             render(){
-                const newTemplate = this.props.data.map(function(item,index){
-                    return( 
-                        <div key={item.id}>
-                            <p className="books_author">{item.author}:</p>
-                            <p className="books_title">{item.title}</p>
-                        </div>
+                let {data} = this.props;
+                if( data.length ){
+                    newTemplate = data.map(function(item,index){
+                        return( 
+                            <div key={item.id}>
+                                <p className="books_author">{item.author}:</p>
+                                <p className="books_title">{item.title}</p>
+                            </div>
+                        )
+                    })
+                }
+                else 
+                {
+                    newTemplate = <p>Книг нет</p>
+                }
+                    return (
+                        <div className="books">
+                            {newTemplate}
+                            {
+                                data.length ? <strong>Всего книг: {data.length}</strong> : null
+                            }
+                            </div>
                     )
-                })
-                return (
-                    <div className="books">
-                        {newTemplate}
-                    </div>
-                )
+                }
             }
-        }
 
         const Comments = () => {
             return <p> Про эти книги еще не написали </p>

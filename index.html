@@ -39,9 +39,12 @@
                 text: '$ должен стоить 35 рублей'
             }
         ];
+        let newsTemplate
         class News extends React.Component{
             render(){
-                const newsTemplate = this.props.data.map(function(item,index){
+                const {data} = this.props
+                if( data.length ){
+                    newsTemplate = this.props.data.map(function(item,index){
                     return (
                         <div key={item.id}>
                             <p className = "news__author">{item.author}:</p>
@@ -50,11 +53,20 @@
                     )           
                 })
 
+            }
+            else
+            {
+                newsTemplate = <p>новостей нет</p>
+            }
+                
                 console.log(newsTemplate)
 
                 return (
                     <div className = "news">
                         {newsTemplate}
+                        {
+                            data.length ? <strong>Всего новостей:{data.length}</strong> : null
+                        }
                     </div>
                 )
             }
